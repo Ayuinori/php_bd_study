@@ -11,8 +11,13 @@ $id_contacto = $_GET['id'];
 
 require_once('inc/config.php');
 require_once('inc/EasyPDO.php');
+
 // ligar a minha base de dados 
 $pdo = new EasyPDO\EasyPDO(MYSQL_OPTIONS);
+
+$id_contacto = aes_decrypt($id_contacto);
+
+
 
 $parametros =[
     ':id_contacto' => $id_contacto

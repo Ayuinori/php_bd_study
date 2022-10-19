@@ -39,12 +39,12 @@ $contactos =     $pdo->query('SELECT * FROM dados');
 
             <?php foreach ($contactos as $contato) : ?>
                 <tr>
-                    <td><?=$contato['nome']?></td>
+                    <td><?= $contato['nome']?></td>
                     <td><?=$contato['telefone']?></td>
 
-                    <td><a href="editar_contacto.php?id=<?= $contato ['id_contato']?>">Edit</a></td>
+                    <td><a href="editar_contacto.php?id=<?= aes_encrypt($contato ['id_contato'])?>">Edit</a></td>
 
-                    <td><a href="eliminar_contacto.php?id=<?= $contato ['id_contato']?>">Delete</a></td>
+                    <td><a href="eliminar_contacto.php?id=<?= aes_encrypt($contato ['id_contato'])?>">Delete</a></td>
                 </tr>
             <?php endforeach; ?>
 
