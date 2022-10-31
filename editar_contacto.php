@@ -15,8 +15,12 @@ require_once('inc/EasyPDO.php');
 // ligar a minha base de dados 
 $pdo = new EasyPDO\EasyPDO(MYSQL_OPTIONS);
 
-$id_contacto = aes_decrypt($id_contacto);
 
+// desencrypt
+$id_contacto = aes_decrypt($id_contacto);
+if($id_contacto == -1 || $id_contacto == false){
+    die('acesso invalido');
+}
 
 
 $parametros =[
@@ -43,7 +47,7 @@ $contacto = $pdo->query('SELECT * FROM dados WHERE id_contato = :id_contacto', $
 
     <form action="editar_contactos_submit.php" method="post">
         <! -- which contact i will edit?? -->
-        <input type="hidden" name="id_contato" value="<?= $id_contacto?>">
+        <input type="hidden" name="id_contato" value="<?= aes_encrypt($id_contacto)?>">
         <div>
             <label>Nome:</label>
             <input type='text' name='text_name' maxlenght='50' value="<?= $contacto['nome']?>">
