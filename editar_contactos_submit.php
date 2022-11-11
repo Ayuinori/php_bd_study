@@ -29,6 +29,7 @@ $parametros = [
     ':telefone'=> $telefone,
 ];
 
+//---------------------------
 
 
 $pdo->query('UPDATE dados  SET nome = :nome, telefone = :telefone WHERE id_contato = :id_contato', $parametros);
